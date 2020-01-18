@@ -1,6 +1,6 @@
 Name:           perl-Sys-CPU
 Version:        0.54
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Getting CPU information
 Group:          Development/Libraries
 # Some code was copied from Unix::Processors, which is LGPLv3 or Artistic 2.0
@@ -46,6 +46,12 @@ find %{buildroot} -type f -name CPU.bs -exec rm -f {} ';'
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.54-3
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.54-2
+- Mass rebuild 2013-12-27
+
 * Tue Nov 13 2012 Petr Pisar <ppisar@redhat.com> - 0.54-1
 - 0.54 bump
 
