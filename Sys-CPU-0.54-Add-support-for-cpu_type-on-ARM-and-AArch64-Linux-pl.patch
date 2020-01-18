@@ -1,0 +1,36 @@
+From 166429a1c12405b2470d1504a7210257ebd0f6bb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Tue, 6 May 2014 08:47:16 +0200
+Subject: [PATCH 1/2] Add support for cpu_type on ARM and AArch64 Linux
+ platforms
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The CPU type is listed as Processor (upper-cased P) entry. SMP systems
+enumerate cores by processor (lower-cased P) entries in addition.
+The Processor is always first, so case-insesitive look-up is not
+a problem.
+
+Signed-off-by: Petr Písař <ppisar@redhat.com>
+---
+ CPU.xs | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/CPU.xs b/CPU.xs
+index 9fb9963..9dd18ff 100644
+--- a/CPU.xs
++++ b/CPU.xs
+@@ -367,6 +367,9 @@ CODE:
+ {
+     char *value = NULL;
+ #ifdef __linux__
++#if defined __arm__ || defined __aarch64__
++    value = proc_cpuinfo_field ("Processor");
++#endif
+ #if defined __s390__ || defined __s390x__
+     value = processor_machine_field (proc_cpuinfo_field ("processor") );
+ #endif
+-- 
+1.9.0
+
